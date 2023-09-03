@@ -19,12 +19,31 @@ You can run everything local except the LLM using your own OpenAI API Key.
 Get your OpenAI API Key [here](https://platform.openai.com/account/api-keys) and install the package.
 
 ```bash
-pip install codeinterpreterapi
+pip install "codeinterpreterapi[all]"
 ```
+
+Everything for local experiments are installed with the `all` extra.
+For deployments, you can use `pip install codeinterpreterapi` instead which does not install the additional dependencies.
 
 ## Usage
 
-Make sure to set the `OPENAI_API_KEY` environment variable (or use a `.env` file)
+To configure OpenAI and Azure OpenAI, ensure that you set the appropriate environment variables (or use a .env file):
+
+For OpenAI, set the OPENAI_API_KEY environment variable:
+```
+export OPENAI_API_KEY=your_openai_api_key
+```
+
+For Azure OpenAI, set the following environment variables:
+```
+export OPENAI_API_TYPE=azure
+export OPENAI_API_VERSION=your_api_version
+export OPENAI_API_BASE=your_api_base
+export OPENAI_API_KEY=your_azure_openai_api_key
+export DEPLOYMENT_NAME=your_deployment_name
+```
+
+Remember to replace the placeholders with your actual API keys and other required information.
 
 ```python
 from codeinterpreterapi import CodeInterpreterSession
@@ -56,7 +75,7 @@ if __name__ == "__main__":
 
 ```
 
-![Bitcoin YTD](https://github.com/shroominic/codeinterpreter-api/blob/main/examples/assets/bitcoin_chart.png?raw=true)  
+![Bitcoin YTD](https://github.com/shroominic/codeinterpreter-api/blob/main/examples/assets/bitcoin_chart.png?raw=true)
 Bitcoin YTD Chart Output
 
 ## Dataset Analysis
@@ -91,7 +110,7 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
-![Iris Dataset Analysis](https://github.com/shroominic/codeinterpreter-api/blob/main/examples/assets/iris_analysis.png?raw=true)  
+![Iris Dataset Analysis](https://github.com/shroominic/codeinterpreter-api/blob/main/examples/assets/iris_analysis.png?raw=true)
 Iris Dataset Analysis Output
 
 ## Production
